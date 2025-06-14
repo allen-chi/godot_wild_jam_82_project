@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var movemet_node : movement_components
 var movement
 
-const SPEED : float = 140
+var speed : float = 140
 
 func _ready() -> void:
 	

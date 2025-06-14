@@ -23,6 +23,5 @@ texture = ExtResource("1_6fuud")
 
 [node name="Node" parent="." instance=ExtResource("2_nhjc7")]
 
-[node name="movement" parent="." node_paths=PackedStringArray("inputs", "parent") instance=ExtResource("3_kk5os")]
-inputs = NodePath("../Node")
+[node name="movement" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("3_kk5os")]
 parent = NodePath("..")
