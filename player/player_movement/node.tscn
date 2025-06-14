@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://dq2beog7j87w5"]
+
+[sub_resource type="GDScript" id="GDScript_duqjr"]
+resource_name = "movement_script"
+script/source = "extends Node
+
+const SPEED : float = 140
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	get_parent()
+	
+
+func _physics_process(delta: float) -> void:
+	pass
+	
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	var direction = get_parent().direction
+	
+	if direction:
+		get_parent().velocity = direction * SPEED
+	
+	pass
+"
+
+[node name="Node" type="Node"]
+script = SubResource("GDScript_duqjr")

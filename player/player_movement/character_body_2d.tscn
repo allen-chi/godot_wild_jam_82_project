@@ -1,43 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpvsalwh0yhui"]
+[gd_scene load_steps=6 format=3 uid="uid://cpvsalwh0yhui"]
 
 [ext_resource type="Texture2D" uid="uid://cvjf0y3m2qajd" path="res://icon.svg" id="1_6fuud"]
-
-[sub_resource type="GDScript" id="GDScript_nhjc7"]
-script/source = "extends CharacterBody2D
-
-
-
-const SPEED : float = 140
-
-func _ready() -> void:
-	
-	
-	pass
-
-
-func _physics_process(delta: float) -> void:
-	
-	var direction := Input.get_vector(\"left\",\"right\",\"up\",\"down\")
-	
-	
-	if direction:
-		velocity = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.y = move_toward(velocity.y, 0, SPEED)
-	move_and_slide()
-"
+[ext_resource type="Script" uid="uid://ile584xkk4nw" path="res://character_body_2d.tres.gd" id="1_jpfp6"]
+[ext_resource type="PackedScene" uid="uid://u7cokqtril6y" path="res://player/components/node.tscn" id="2_nhjc7"]
+[ext_resource type="PackedScene" uid="uid://btnq5e2vcm516" path="res://player/components/movement.tscn" id="3_kk5os"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kk5os"]
 size = Vector2(137, 131)
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
-script = SubResource("GDScript_nhjc7")
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("inputs", "movemet_node")]
+script = ExtResource("1_jpfp6")
+inputs = NodePath("Node")
+movemet_node = NodePath("movement")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(129, 90)
 shape = SubResource("RectangleShape2D_kk5os")
 
 [node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(130, 90)
+position = Vector2(130, 92)
 texture = ExtResource("1_6fuud")
+
+[node name="Node" parent="." instance=ExtResource("2_nhjc7")]
+
+[node name="movement" parent="." node_paths=PackedStringArray("inputs", "parent") instance=ExtResource("3_kk5os")]
+inputs = NodePath("../Node")
+parent = NodePath("..")
