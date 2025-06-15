@@ -1,12 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://cpvsalwh0yhui"]
+[gd_scene load_steps=8 format=3 uid="uid://cpvsalwh0yhui"]
 
 [ext_resource type="Texture2D" uid="uid://cvjf0y3m2qajd" path="res://icon.svg" id="1_6fuud"]
 [ext_resource type="Script" uid="uid://ile584xkk4nw" path="res://character_body_2d.tres.gd" id="1_jpfp6"]
 [ext_resource type="PackedScene" uid="uid://u7cokqtril6y" path="res://player/components/node.tscn" id="2_nhjc7"]
 [ext_resource type="PackedScene" uid="uid://btnq5e2vcm516" path="res://player/components/movement.tscn" id="3_kk5os"]
+[ext_resource type="PackedScene" uid="uid://dqj1hnqr1sfkv" path="res://player/components/dmg.tscn" id="5_n81fg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kk5os"]
 size = Vector2(137, 131)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k5jan"]
+radius = 123.065
 
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("inputs", "movemet_node")]
 script = ExtResource("1_jpfp6")
@@ -25,3 +29,10 @@ texture = ExtResource("1_6fuud")
 
 [node name="movement" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("3_kk5os")]
 parent = NodePath("..")
+
+[node name="Area2D" parent="." instance=ExtResource("5_n81fg")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(128, 91)
+shape = SubResource("CircleShape2D_k5jan")
+debug_color = Color(0.77016, 0, 0.0738298, 0.42)

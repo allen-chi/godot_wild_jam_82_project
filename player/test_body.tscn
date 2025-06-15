@@ -1,12 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://323xt6q7lvfo"]
+[gd_scene load_steps=8 format=3 uid="uid://323xt6q7lvfo"]
 
 [ext_resource type="Script" uid="uid://ile584xkk4nw" path="res://character_body_2d.tres.gd" id="1_w6uit"]
 [ext_resource type="Texture2D" uid="uid://cvjf0y3m2qajd" path="res://icon.svg" id="2_8evbv"]
 [ext_resource type="PackedScene" uid="uid://btnq5e2vcm516" path="res://player/components/movement.tscn" id="3_mvsgg"]
 [ext_resource type="PackedScene" uid="uid://u7cokqtril6y" path="res://player/components/node.tscn" id="4_u43e2"]
+[ext_resource type="PackedScene" uid="uid://dqj1hnqr1sfkv" path="res://player/components/dmg.tscn" id="5_8evbv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hnem8"]
-radius = 96.0208
+radius = 86.209
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8evbv"]
+radius = 154.548
 
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("inputs", "movemet_node")]
 script = ExtResource("1_w6uit")
@@ -18,11 +22,17 @@ position = Vector2(100, 97)
 texture = ExtResource("2_8evbv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(90, 79)
+position = Vector2(98, 100)
 shape = SubResource("CircleShape2D_hnem8")
 
 [node name="movement" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("3_mvsgg")]
-speed = 400.0
 parent = NodePath("..")
 
 [node name="Node" parent="." instance=ExtResource("4_u43e2")]
+
+[node name="Area2D" parent="." instance=ExtResource("5_8evbv")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(101, 105)
+shape = SubResource("CircleShape2D_8evbv")
+debug_color = Color(0.672889, 0.0338948, 0.104822, 0.42)

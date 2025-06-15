@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://2rwfk8b3e2uc"]
+
+[ext_resource type="PackedScene" uid="uid://bcllocb2qp8fg" path="res://player/components/health.tscn" id="1_874dn"]
+[ext_resource type="Texture2D" uid="uid://cvjf0y3m2qajd" path="res://icon.svg" id="2_vffqg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dr50u"]
+radius = 86.093
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dm1pb"]
+size = Vector2(107, 108)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+
+[node name="Area2D" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("1_874dn")]
+monitorable = false
+parent = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(83, 117)
+shape = SubResource("CircleShape2D_dr50u")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(83, 112)
+texture = ExtResource("2_vffqg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(81, 112)
+shape = SubResource("RectangleShape2D_dm1pb")
